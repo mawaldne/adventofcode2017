@@ -4,4 +4,3 @@ version = "0.1.0"
 authors = ["Mike Waldner <mwaldner@surgeforward.com>"]
 
 [dependencies]
-itertools = "0.7.4"
