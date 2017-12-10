@@ -3,14 +3,9 @@
 # To Run
 # ./corruptions_checksum2.rb day2.input
 
-numbers = []
-ARGF.each_line do |row|
-  numbers << row
-    .split
-    .map { |c| c.to_i }
-    .permutation(2)
-    .select { |a,b| a % b == 0 }
-    .map { |a,b| a / b }
-    .first
-end
-p numbers.reduce(:+)
+p ARGF.each_line
+  .map { |row| row.split.map(&:to_i) }
+  .map { |row| row.permutation(2) }
+  .map { |row| row.find { |a,b| a % b == 0 } }
+  .map { |a,b| a / b }
+  .reduce(:+)
