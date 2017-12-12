@@ -13,5 +13,5 @@ p numbers
   .map
   .with_index { |a, i| [a, numbers[(i + mid) % length]] }
   .select { |a,b| a == b }
-  .map { |a,b| a }
+  .map(&:first)
   .reduce(0,:+)

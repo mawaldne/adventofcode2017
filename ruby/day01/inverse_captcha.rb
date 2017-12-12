@@ -11,5 +11,5 @@ numbers << numbers[0]
 p numbers
   .each_cons(2)
   .select { |a,b| a == b }
-  .map { |a,b| a }
+  .map(&:first)
   .reduce(0,:+)
