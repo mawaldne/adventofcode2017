@@ -6,6 +6,7 @@
 INSTRUCTION = /(.*) (inc|dec) ([-+]?\d*) if (.*) (.*) ([-+]?\d*)$/
 variables = Hash.new(0)
 
+max = 0
 ARGF.each_line do |instruction|
   if instruction =~ INSTRUCTION
     var, var2 = $1, $4
@@ -18,7 +19,11 @@ ARGF.each_line do |instruction|
     inst = "variables[var] #{inc} #{inc_amt} if variables[var2] #{boolean} #{criteria}"
     eval(inst)
     p inst
+
+    new_max = variables.values.max || 0
+    max = new_max if max < new_max
   end
 end
 p variables.values.max
+p max
 
