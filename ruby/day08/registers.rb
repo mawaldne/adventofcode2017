@@ -20,8 +20,7 @@ ARGF.each_line do |instruction|
     eval(inst)
     p inst
 
-    new_max = variables.values.max || 0
-    max = new_max if max < new_max
+    max = [variables.values.max, max].max
   end
 end
 p variables.values.max
