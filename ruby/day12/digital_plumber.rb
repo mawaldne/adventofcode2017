@@ -16,26 +16,14 @@ ARGF.each_line do |node|
   end
 end
 
+check = [0]
 connected = Set.new
-check = []
 
-nodes.each do |k, v|
-  check = [k]
-  visited = Set.new
-
-  loop {
-    if visited.include?(0)
-      connected << k
-      check = []
-    else
-      current = check.shift
-      visited += [current]
-      check += nodes[current] - visited.to_a
-    end
-
-      break if check.empty?
-  }
+while check.any?
+  pg = check.pop
+  connected.add(pg)
+  check += nodes[pg].reject { |pro| connected.include?(pro) }
 end
 
-p connected.length
+puts connected.size
 
